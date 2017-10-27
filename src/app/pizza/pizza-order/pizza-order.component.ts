@@ -4,7 +4,6 @@ import { Observable } from 'rxjs/Observable';
 import * as actions from '../pizza.actions';
 import * as fromPizza from '../pizza.reducer';
 
-
 @Component({
   selector: 'pizza-order',
   templateUrl: './pizza-order.component.html',
@@ -14,12 +13,13 @@ export class PizzaOrderComponent implements OnInit {
 
   pizzas: Observable<any>;
 
-
   constructor(private store: Store<fromPizza.State>) { }
 
   ngOnInit() {
     this.pizzas = this.store.select(fromPizza.selectAll)
+    this.store.dispatch(  new actions.Query() )
   }
+
 
   createPizza() {
     const pizza: fromPizza.Pizza = {

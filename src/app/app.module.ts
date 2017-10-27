@@ -10,6 +10,12 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { PizzaModule } from './pizza/pizza.module';
 import { reducers } from './reducers';
 
+import { AngularFireModule } from 'angularfire2';
+import { environment } from '../environments/environment';
+
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -22,7 +28,10 @@ import { reducers } from './reducers';
     StoreDevtoolsModule.instrument({
       maxAge: 25
     }),
-    PizzaModule
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    EffectsModule.forRoot([]),
+    PizzaModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
